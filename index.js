@@ -25,12 +25,27 @@ app.get('/mensagem/:tipo/:id', (req,res)=>{
    res.send("resposta que você editar o id : " + cod);
 })
 
-app.post('/mensagem', (req,res) =>{
+app.post('/pedido', (req,res) =>{
   console.log(req.body);
-  res.send("msg recebida");
-})
+  const produto = req.body.produto;
+  const qtd = req.body.quantidade;
+  const pag = req.body.pag;
+  const bebida = req.body.bebida;
 
-app.listen( 3000, "127.0.0.1", () =>{
-    console.log("Servidor rodando");
+  const pedido = {
+    produto,
+    qtd,
+    pag,bebida
+
+
+  }
+  res.json(pedido);
+})
+// PROCURANDO A PORTA NO HEROKU
+const porta = process.env.PORT || 3000;
+const hostname = "127.0.0.1" ;
+
+app.listen( porta, hostname, () =>{
+    console.log(`servidor rodando em http://${hostname}:${porta}`);
 
 })
