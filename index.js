@@ -40,27 +40,27 @@ app.listen( porta, ()  =>{
 //implementando a varialvel que eu quero
 // duas variais implementadas na edição
 // via params
-/*app.get('/mensagem/:tipo/:id', (req,res)=>{
-   console.log(req);
-   msg = req.params.tipo;
-   cod = req.params.id;
+//app.get('/mensagem/:tipo/:id', (req,res)=>{
+  // console.log(req);
+   //msg = req.params.tipo;
+   //cod = req.params.id;
   // res.send("A rota que vc quer acessar é:" + msg);
-   res.send("A ID que vc quer acessar é:" + cod);
-})
+  // res.send("A ID que vc quer acessar é:" + cod);
+//})
 
-app.post('/pedido', (req,res) =>{
-  console.log(req.body);
-  const produto = req.body.produto;
-  const qtd = req.body.quantidade;
-  const pag = req.body.pag;
-  const bebida = req.body.bebida;
+//app.post('/pedido', (req,res) =>{
+  //console.log(req.body);
+  //const produto = req.body.produto;
+  //const qtd = req.body.quantidade;
+  //const pag = req.body.pag;
+  //const bebida = req.body.bebida;
 
-  const pedido = {
-    produto,
-    qtd,
-    pag,bebida
+  //const pedido = {
+    //produto,
+    //qtd,
+    //pag,bebida
 
 
-  }
-  res.json(pedido);
-})
+  //}
+  //res.json(pedido);
+//})
