@@ -19,7 +19,7 @@ app.get('/pergunta', (req, res) => {
   res.send('Você perguntou :' + msg);
 })
 
-app.post('/webhook,' (req,res) =>  {
+app.post('/webhook', (req,res) =>  {
   console.log("Cheguei do webhook");
   console.log(req.body.queryResult);
 
