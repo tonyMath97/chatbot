@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 
 const app = express( );
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 
 app.get('/', (req, res) =>{
     res.send("Hello WORD");
@@ -16,10 +18,29 @@ app.get('/pergunta', (req, res) => {
   msg=req.query.pergunta;
   res.send('Você perguntou :' + msg);
 })
+
+app.post('/webhook,' (req,res) =>  {
+  console.log("Cheguei do webhook");
+  console.log(req.body.queryResult);
+
+})
+// PROCURANDO A PORTA NO HEROKU
+const porta = process.env.PORT || 3000;
+const hostname = "127.0.0.1" ;
+
+app.listen( porta, ()  =>{
+    console.log(`servidor rodando em http://${hostname}:${porta}`);
+
+})
+
+
+
+
+
 //implementando a varialvel que eu quero
 // duas variais implementadas na edição
 // via params
-app.get('/mensagem/:tipo/:id', (req,res)=>{
+/*app.get('/mensagem/:tipo/:id', (req,res)=>{
    console.log(req);
    msg = req.params.tipo;
    cod = req.params.id;
@@ -42,12 +63,4 @@ app.post('/pedido', (req,res) =>{
 
   }
   res.json(pedido);
-})
-// PROCURANDO A PORTA NO HEROKU
-const porta = process.env.PORT || 3000;
-const hostname = "127.0.0.1" ;
-
-app.listen( porta, ()  =>{
-    console.log(`servidor rodando em http://${hostname}:${porta}`);
-
 })
