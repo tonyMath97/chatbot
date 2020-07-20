@@ -21,7 +21,36 @@ app.get('/pergunta', (req, res) => {
 
 app.post('/webhook', (req,res) =>  {
   console.log("Cheguei do webhook");
-  console.log(req.body.queryResult);
+  
+  const msgrecebida = req.body.queryResult.queryText;
+  const intencao = req.body.queryResult.intent;
+  // verificar o nao_vendemos no dialogflow
+ 
+  if(req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos ){
+    const responder = 'Não vendemos' + req.body.queryResult.parameters.nao_vendemos;
+    console.log('mensagem responder: ', responder);
+
+  }
+
+  const resposta = {
+
+    {
+      "fulfillmentMessages": [
+        {
+          "text": {
+            "text": [
+              "Text response from webhook"
+            ]
+          }
+        }
+      ]
+    }
+  
+    res.send(resposta);
+
+  }
+
+  req.sen()
 
 })
 // PROCURANDO A PORTA NO HEROKU
