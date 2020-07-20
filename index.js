@@ -34,7 +34,7 @@ app.post('/webhook', (req,res) =>  {
 
   const resposta = {
 
-    {
+    
       "fulfillmentMessages": [
         {
           "text": {
@@ -46,13 +46,11 @@ app.post('/webhook', (req,res) =>  {
       ]
     }
   
-    res.send(resposta);
+    res.send(resposta)
 
-  }
+  })
 
-  req.sen()
 
-})
 // PROCURANDO A PORTA NO HEROKU
 const porta = process.env.PORT || 3000;
 const hostname = "127.0.0.1" ;
