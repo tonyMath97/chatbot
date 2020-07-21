@@ -23,8 +23,8 @@ app.post('/webhook', (req,res) =>  {
   console.log("Cheguei do webhook");
   
   const msgrecebida = req.body.queryResult.queryText;
-  const intencao = req.body.queryResult.intent;
-  console.log(req);
+  //const intencao = req.body.queryResult.intent;
+  console.log(req.query);
   // verificar o nao_vendemos no dialogflow
   
  
