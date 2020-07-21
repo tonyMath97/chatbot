@@ -24,7 +24,9 @@ app.post('/webhook', (req,res) =>  {
   
   const msgrecebida = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent;
+  console.log(req.body.queryResult.intent);
   // verificar o nao_vendemos no dialogflow
+  
  
   if(req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos ){
     const responder = 'Não vendemos' + req.body.queryResult.parameters.nao_vendemos;
@@ -47,6 +49,7 @@ app.post('/webhook', (req,res) =>  {
     }
   
     res.send(resposta)
+
 
   })
 
