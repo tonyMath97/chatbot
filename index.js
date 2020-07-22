@@ -29,7 +29,7 @@ app.post('/webhook', (req,res) =>  {
   
  
   if(req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos ){
-    const responder = 'Não vendemos' + req.body.queryResult.parameters.nao_vendemos;
+    const responder = 'Não vendemos ' + req.body.queryResult.parameters.nao_vendemos;
     console.log('mensagem responder: ', responder);
   }
   console.log('Mensagem orifinal ' + msgrecebida);
