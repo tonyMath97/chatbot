@@ -24,13 +24,13 @@ app.post('/webhook', (req,res) =>  {
   
   const msgrecebida = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
-  let responder = ' '
+  let responder = ''
   console.log(req.query);
   // verificar o nao_vendemos no dialogflow
   
  
   if(req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos ){
-    const responder = 'Não vendemos ' + req.body.queryResult.parameters.nao_vendemos;
+     responder = 'Não vendemos ' + req.body.queryResult.parameters.nao_vendemos;
     console.log('mensagem responder: ', responder);
   }
   responder = responder + 'Nosso cardapio ainda está em construção, mas nós vendemos pizza e refrigerante';
