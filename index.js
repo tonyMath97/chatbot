@@ -23,7 +23,7 @@ app.post('/webhook', (req,res) =>  {
   console.log("Cheguei do webhook");
   
   const msgrecebida = req.body.queryResult.queryText;
-  //const intencao = req.body.queryResult.intent;
+  const intencao = req.body.queryResult.intent.displayName;
   console.log(req.query);
   // verificar o nao_vendemos no dialogflow
   
@@ -32,7 +32,9 @@ app.post('/webhook', (req,res) =>  {
     const responder = 'Não vendemos' + req.body.queryResult.parameters.nao_vendemos;
     console.log('mensagem responder: ', responder);
   }
-
+  console.log('Mensagem orifinal ' + msgrecebida);
+  console.log('Minha intencao ' + intencao);
+  
   const resposta = {
 
     
