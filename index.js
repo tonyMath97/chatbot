@@ -24,7 +24,7 @@ app.post('/webhook', (req,res) =>  {
   
   const msgrecebida = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
-  let responder = ''
+  let responder = ' '
   console.log(req.query);
   // verificar o nao_vendemos no dialogflow
   
@@ -45,7 +45,7 @@ app.post('/webhook', (req,res) =>  {
         {
           "text": {
             "text": [
-              "Text response from webhook"
+              responder
             ]
           }
         }
