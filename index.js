@@ -38,14 +38,14 @@ case 'VerCardapio':
     resposta = {tipo: 'texto', mensagem: 'Sinto muito'}   
 }
   
-if(resp.tipo == 'texto' ){
+if(resposta.tipo == 'texto' ){
    responder = {
     
     "fulfillmentMessages": [
       {
         "text": {
           "text": [
-            resp.mensagem
+            resposta.mensagem
           ]
         }
       }
