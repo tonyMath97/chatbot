@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const model =require("../model");
 const app = express( );
+
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -11,19 +13,11 @@ app.get('/', (req, res) =>{
     res.send("Hello WORD");
 })
 
-// escrevendo textos no host
-app.get('/pergunta', (req, res) => {
- // console.log(req.query);
-  // via query
-  msg=req.query.pergunta;
-  res.send('Você perguntou :' + msg);
-})
-
 app.post('/webhook', (req,res) =>  {
-  console.log("Cheguei do webhook");
-  
-  const msgrecebida = req.body.queryResult.queryText;
+
+  const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
+  let parameters = null;
   let responder = ''
   console.log(req.query);
   // verificar o nao_vendemos no dialogflow
@@ -33,24 +27,33 @@ app.post('/webhook', (req,res) =>  {
      responder = 'Não vendemos ' + req.body.queryResult.parameters.nao_vendemos;
     console.log('mensagem responder: ', responder);
   }
-  responder = responder + '\n Nosso cardapio ainda está em construção, mas nós vendemos pizza e refrigerante';
 
-  console.log('Mensagem orifinal ' + msgrecebida);
-  console.log('Minha intencao ' + intencao);
+
+
+switch(intencao){
+case 'VerCardapio':
+    resp = model.VerCardapio(mensagem, parametros);
+    break;
+ default:
+    resp = {tipo: 'texto', mensagem: 'Sinto muito'}   
+}
   
+if(resp.tipo == 'texto' ){
   const resposta = {
-
     
-      "fulfillmentMessages": [
-        {
-          "text": {
-            "text": [
-              responder
-            ]
-          }
+    "fulfillmentMessages": [
+      {
+        "text": {
+          "text": [
+            resp.mensagem
+          ]
         }
-      ]
-    }
+      }
+    ]
+  }
+
+}
+ 
   
     res.send(resposta);
 
@@ -66,35 +69,3 @@ app.listen( porta, ()  =>{
     console.log(`servidor rodando em http://${hostname}:${porta}`);
 
 })
-
-
-
-
-
-//implementando a varialvel que eu quero
-// duas variais implementadas na edição
-// via params
-//app.get('/mensagem/:tipo/:id', (req,res)=>{
-  // console.log(req);
-   //msg = req.params.tipo;
-   //cod = req.params.id;
-  // res.send("A rota que vc quer acessar é:" + msg);
-  // res.send("A ID que vc quer acessar é:" + cod);
-//})
-
-//app.post('/pedido', (req,res) =>{
-  //console.log(req.body);
-  //const produto = req.body.produto;
-  //const qtd = req.body.quantidade;
-  //const pag = req.body.pag;
-  //const bebida = req.body.bebida;
-
-  //const pedido = {
-    //produto,
-    //qtd,
-    //pag,bebida
-
-
-  //}
-  //res.json(pedido);
-//})
