@@ -32,14 +32,14 @@ app.post('/webhook', (req,res) =>  {
 
 switch(intencao){
 case 'VerCardapio':
-    resp = model.VerCardapio(mensagem, parameters);
+    resposta = model.VerCardapio(mensagem, parameters);
     break;
  default:
-    resp = {tipo: 'texto', mensagem: 'Sinto muito'}   
+    resposta = {tipo: 'texto', mensagem: 'Sinto muito'}   
 }
   
 if(resp.tipo == 'texto' ){
-  const resposta = {
+   responder = {
     
     "fulfillmentMessages": [
       {
@@ -55,7 +55,7 @@ if(resp.tipo == 'texto' ){
 }
  
   
-    res.send(resposta);
+    res.send(responder);
 
 
   })
