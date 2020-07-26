@@ -17,7 +17,7 @@ app.post('/webhook', (req,res) =>  {
 
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
-  let parameters = null;
+  const parameters = req.body.queryResult.parameters;
   let responder = ''
   console.log(req.query);
   // verificar o nao_vendemos no dialogflow
@@ -32,7 +32,7 @@ app.post('/webhook', (req,res) =>  {
 
 switch(intencao){
 case 'VerCardapio':
-    resp = model.VerCardapio(mensagem, parametros);
+    resp = model.VerCardapio(mensagem, parameters);
     break;
  default:
     resp = {tipo: 'texto', mensagem: 'Sinto muito'}   
