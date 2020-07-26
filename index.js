@@ -28,15 +28,19 @@ app.post('/webhook', (req,res) =>  {
     console.log('mensagem responder: ', responder);
   }
 
-
-
 switch(intencao){
 case 'VerCardapio':
     resposta = model.VerCardapio(mensagem, parameters);
     break;
+case 'VerStatus':
+    resposta = model.VerStatus(mensagem, parameters)
+    break;
  default:
     resposta = {tipo: 'texto', mensagem: 'Sinto muito'}   
 }
+
+
+
   
 if(resposta.tipo == 'texto' ){
    responder = {
@@ -46,6 +50,26 @@ if(resposta.tipo == 'texto' ){
         "text": {
           "text": [
             resposta.mensagem
+          ]
+        }
+      }
+    ]
+  }
+
+} else if (resposta.tipo == 'imagem'){
+ responder =
+  {
+    "fulfillmentMessages": [
+      {
+        "card": {
+          "title": "card title",
+          "subtitle": "card text",
+          "imageUri": resposta.url,
+          "buttons": [
+            {
+              "text": "button text",
+              "postback": "https://example.com/path/for/end-user/to/follow"
+            }
           ]
         }
       }
