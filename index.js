@@ -33,7 +33,7 @@ app.post('/webhook', (req,res) =>  {
      responder = 'Não vendemos ' + req.body.queryResult.parameters.nao_vendemos;
     console.log('mensagem responder: ', responder);
   }
-  responder = responder + 'Nosso cardapio ainda está em construção, mas nós vendemos pizza e refrigerante';
+  responder = responder + '\n Nosso cardapio ainda está em construção, mas nós vendemos pizza e refrigerante';
 
   console.log('Mensagem orifinal ' + msgrecebida);
   console.log('Minha intencao ' + intencao);
