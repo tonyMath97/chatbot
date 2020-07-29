@@ -3,8 +3,6 @@ const bodyParser = require("body-parser");
 const model =require("./model");
 const app = express( );
 
-
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
