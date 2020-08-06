@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const model =require("./model");
 const app = express( );
+const axios = require('axios');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -28,6 +29,18 @@ app.post('/webhook', (req,res) =>  {
 
 switch(intencao){
 case 'VerCardapio':
+    const url= `https://sheet.best/api/sheets/ccb21174-21da-49f4-ab4a-a43a67dec1b4`;
+    let menu = '';
+    return axios
+    	.get(url)
+    	.then((res) => {
+      		res.data.map(cardapio => {
+            console.log(`Produto: ${cardapio.Nome} -Valor: ${cardapio.Preco}`);
+      		menu += `*-Codigo*: ${cardapio.Codigo}\n - Produto: ${cardapio.Nome}\n -Valor: ${cardapio.Preco}${cardapio.emote}\n\n`;
+            });
+    	   agent.add(menu);
+    	})
+    	.catch(err => console.log(err));
     resposta = model.VerCardapio(mensagem, parameters);
     break;
 case 'VerStatus':
@@ -81,6 +94,8 @@ if(resposta.tipo == 'texto' ){
 
 
   })
+
+ 
 
 
 // PROCURANDO A PORTA NO HEROKU

@@ -7,12 +7,21 @@ exports.VerStatus = (msg, params) =>{
 
     return resposta
 }
-// 
+//
 exports.VerCardapio = (msg, params) =>{
     let resposta = {
-        tipo: 'imagem',
-        url: 'https://i.ibb.co/3dH36Q1/CARD.png'
+        tipo: 'texto',
+        mensagem: 'Já estamos preparando seu pedido'
     }
 
     return resposta
 }
+
+//exports.VerCardapio = (msg, params) =>{
+  //  let resposta = {
+    //    tipo: 'imagem',
+      //  url: 'https://i.ibb.co/3dH36Q1/CARD.png'
+    //}
+
+    //return resposta
+//}
